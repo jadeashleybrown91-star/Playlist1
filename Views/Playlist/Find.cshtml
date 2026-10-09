@@ -1,0 +1,37 @@
+﻿@model string[]
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    ViewData["Title"] = "Find a Song";
+}
+
+<h1>Find a Song</h1>
+
+<form asp-controller="Playlist" 
+asp-action="Find" method="get">
+
+    <label for="searchTerm">Enter song name:</label>
+    <input type="text" id="searchTerm" name="searchTerm" />
+
+    <button type="submit">Search</button>
+</form>
+@if (Model != null)
+{
+    <h2>Search Results</h2>
+
+    @if (Model.Length > 0)
+    {
+        <ul>
+            @foreach (var song in Model)
+            {
+                <li>@song</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No matching songs found.</p>
+    }
+}
